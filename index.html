@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="sicbo">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body ng-controller="SicboCtrl">
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <a class="brand" href="#">骰寶</a>
+        <!--<ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>-->
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span8 offset2">
+          <div class="well">
+            <form class="form-inline" validate>
+              <input type="text" class="input-large" placeholder="結果" pattern="[1-6]{3}" ng-model="new_result" autofocus />
+              <input type="submit" class="btn" ng-click="addResult()" value="輸入" />
+            </form>
+            <div ng-repeat="result in results | reverse" class="row-fluid result-zone">
+              <span class="index" ng-class-odd="'odd'" ng-class-even="'even'">{{results.length - $index}}</span>
+              <span class="result">{{result[0]}}</span>
+              <span class="result">{{result[1]}}</span>
+              <span class="result">{{result[2]}}</span>
+              <span ng-switch on="{{result[0] == result[1] && result[1] == result[2]}}">
+                <span ng-switch-when="true">
+                  <span class="wei">圍</span>
+                </span>
+                <span ng-switch-when="false">
+                  <span ng-switch on="{{result[0] + result[1] + result[2]}} > 10">
+                    <span ng-switch-when="true">
+                      <span class="big">大</span>
+                    </span>
+                    <span ng-switch-when="false">
+                      <span class="small">細</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>-->
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>

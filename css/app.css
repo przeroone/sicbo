@@ -1,0 +1,49 @@
+body {
+  font-size: 16px;
+}
+
+.container-fluid {
+  margin: 20px;
+}
+
+.result-zone {
+  margin: 5px;
+  vertical-align: middle;
+  font-size: 3em;
+  line-height: 1.3em;
+}
+
+.index {
+  padding: 5px;
+  color: grey;
+}
+
+.odd {
+  background: #CDCDCD;
+}
+
+.even {
+  background: #DBDBDB;
+}
+
+.result {
+  padding: 5px;
+}
+
+.wei {
+  padding: 5px;
+  color: white;
+  background: blue;
+}
+
+.big {
+  padding: 5px;
+  color: white;
+  background: green;
+}
+
+.small {
+  padding: 5px;
+  color: white;
+  background: red;
+}
