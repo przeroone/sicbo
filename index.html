@@ -3,7 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/app.css" />
   </head>
@@ -20,13 +21,13 @@
     </div>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span8 offset2">
+        <div class="span4 offset2">
           <div class="well">
             <form class="form-inline" validate>
               <input type="text" class="input-large" placeholder="結果" pattern="[1-6]{3}" ng-model="new_result" autofocus />
               <input type="submit" class="btn" ng-click="addResult()" value="輸入" />
             </form>
-            <div ng-repeat="result in results | reverse" class="row-fluid result-zone">
+            <div ng-repeat="result in results | reverse" class="row-fluid result-zone {{limit > $index && 'big-display' || ''}}">
               <span class="index" ng-class-odd="'odd'" ng-class-even="'even'">{{results.length - $index}}</span>
               <span class="result">{{result[0]}}</span>
               <span class="result">{{result[1]}}</span>
@@ -49,12 +50,26 @@
             </div>
           </div>
         </div>
+        <div class="span4">
+          <div class="well">
+            <canvas id="big-small-chart" width="300" height="300" style="margin:0 auto"></canvas>
+          </div>
+        </div>
       </div>
     </div>
     <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Chart.min.js"></script>
     <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>-->
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript">
+      var ctx = document.getElementById("big-small-chart").getContext("2d");
+      var BSChart = new Chart(ctx).Pie([
+        { value: 10, color: 'red' },
+        { value: 90, color: 'green' }
+      ]);
+    </script>
   </body>
 </html>

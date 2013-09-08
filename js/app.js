@@ -7,7 +7,9 @@ app.filter('reverse', function() {
 });
 
 function SicboCtrl($scope) {
-  $scope.results = []
+  $scope.limit = 10;
+
+  $scope.results = [];
 
   $scope.addResult = function() {
     var nr = $scope.new_result
