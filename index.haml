@@ -1,0 +1,44 @@
+!!!
+%html{"ng-app" => "sicbo"}
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:charset => "utf-8"}/
+    %link{:href => "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css", :rel => "stylesheet"}/
+    / <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+    %link{:href => "css/app.css", :rel => "stylesheet"}/
+  %body{"ng-controller" => "SicboCtrl"}
+    .navbar.navbar-inverse.navbar-static-top
+      .navbar-inner
+        %a.brand{:href => "#"} 骰寶wwwwww
+        /
+          <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          </ul>
+    .container-fluid
+      .row-fluid
+        .span8.offset2
+          .well
+            %form.form-inline{:validate => ""}
+              %input.input-large{:autofocus => "", "ng-model" => "new_result", :pattern => "[1-6]{3}", :placeholder => "結果", :type => "text"}/
+              %input.btn{"ng-click" => "addResult()", :type => "submit", :value => "輸入"}/
+            .row-fluid.result-zone{"ng-repeat" => "result in results | reverse"}
+              %span.index{"ng-class-even" => "'even'", "ng-class-odd" => "'odd'"} {{results.length - $index}}
+              %span.result {{result[0]}}
+              %span.result {{result[1]}}
+              %span.result {{result[2]}}
+              %span{"ng-switch" => "", :on => "{{result[0] == result[1] && result[1] == result[2]}}"}
+                %span{"ng-switch-when" => "true"}
+                  %span.wei 圍
+                %span{"ng-switch-when" => "false"}
+                  %span{"ng-switch" => "", :on => "{{result[0] + result[1] + result[2]}} > 10"}
+                    %span{"ng-switch-when" => "true"}
+                      %span.big 大
+                    %span{"ng-switch-when" => "false"}
+                      %span.small 細
+    / <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    %script{:src => "//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js", :type => "text/javascript"}
+    %script{:src => "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js", :type => "text/javascript"}
+    / <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>
+    %script{:src => "js/app.js", :type => "text/javascript"}
