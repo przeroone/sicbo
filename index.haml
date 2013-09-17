@@ -1,15 +1,15 @@
-!!!
+!!! 5
 %html{"ng-app" => "sicbo"}
   %head
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %meta{:charset => "utf-8"}/
-    %link{:href => "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css", :rel => "stylesheet"}/
+    %meta{content: "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{charset: "utf-8"}/
+    %link{href: "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css", rel: "stylesheet"}/
     / <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
-    %link{:href => "css/app.css", :rel => "stylesheet"}/
+    %link{href: "css/app.css", rel: "stylesheet"}/
   %body{"ng-controller" => "SicboCtrl"}
     .navbar.navbar-inverse.navbar-static-top
       .navbar-inner
-        %a.brand{:href => "#"} 骰寶wwwwww
+        %a.brand{:href => "#"} 骰寶
         /
           <ul class="nav">
           <li class="active"><a href="#">Home</a></li>
@@ -20,8 +20,8 @@
       .row-fluid
         .span8.offset2
           .well
-            %form.form-inline{:validate => ""}
               %input.input-large{:autofocus => "", "ng-model" => "new_result", :pattern => "[1-6]{3}", :placeholder => "結果", :type => "text"}/
+            %form.form-inline{:validate => ""}
               %input.btn{"ng-click" => "addResult()", :type => "submit", :value => "輸入"}/
             .row-fluid.result-zone{"ng-repeat" => "result in results | reverse"}
               %span.index{"ng-class-even" => "'even'", "ng-class-odd" => "'odd'"} {{results.length - $index}}
